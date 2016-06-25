@@ -37,5 +37,5 @@
     "foo": "NODE_ENV=production node build/foo.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "MIT"
 }

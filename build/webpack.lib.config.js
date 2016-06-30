@@ -3,7 +3,7 @@
 * @Date:   2016-06-26 17:57:00
 * @Email:  zyy7259@gmail.com
 * @Last modified by:   zyy
-* @Last modified time: 2016-06-26 17:58:59
+* @Last modified time: 2016-06-30 13:37:20
 */
 
 var env = require('./env')
@@ -63,6 +63,7 @@ if (!isProduction) {
   config.output.pathinfo = true
   config.devtool = 'eval'
 } else {
+  config.output.filename = config.output.filename.replace('.js', '.min.js')
   [].push.apply(config.plugins, [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({

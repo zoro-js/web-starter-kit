@@ -2,7 +2,7 @@
 # @Date:   2016-05-16 16:04:00
 # @Email:  zyy7259@gmail.com
 # @Last modified by:   zyy
-# @Last modified time: 2016-06-22 09:45:02
+# @Last modified time: 2016-06-30 13:49:07
 
 env:
   browser: true
@@ -11,6 +11,7 @@ env:
 extends: standard
 globals:
   _: false
+  define: false
   Regular: false
   restate: false
-  define: false
+  RegularStrap: false

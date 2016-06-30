@@ -2,7 +2,7 @@
 * @Author: Zhang Yingya(hzzhangyingya)
 * @Date:   2016-05-16 21:15:10
 * @Last modified by:   zyy
-* @Last modified time: 2016-06-26 16:58:53
+* @Last modified time: 2016-06-30 09:55:27
 */
 
 var env = require('./env')
@@ -43,8 +43,8 @@ var config = {
     ],
     alias: {
       'data': path.resolve(__dirname, '../data'),
+      'util': path.resolve(__dirname, '../src/submodule/zoro-base/src'),
       'strap': path.resolve(__dirname, '../src/submodule/regular-strap/src'),
-      'zoro-base': path.resolve(__dirname, '../src/submodule/zoro-base/src'),
       'regularjs': path.resolve(__dirname, '../node_modules/regularjs/dist/regular'),
       'restate': path.resolve(__dirname, '../node_modules/regular-state/restate-full'),
       'stateman': path.resolve(__dirname, '../node_modules/stateman/stateman')

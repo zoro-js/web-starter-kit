@@ -33,8 +33,9 @@
 
     "dev": "npm run watch",
     "server": "puer & npm run dev",
-    "archive": "git archive --format zip -o dist/regular-strap.zip master",
-    "publish": "npm run build && NODE_ENV=production npm run build && npm run archive",
+    "dist": "npm run build:js && NODE_ENV=production npm run build:js",
+    "archive": "git archive --format zip -o dist/regular-strap.zip master src dist",
+    "prepub": "npm run dist && git add --all && git commit -m 'pre-publish' && npm run archive",
     "foo": "NODE_ENV=production node build/foo.js"
   },
   "author": "",

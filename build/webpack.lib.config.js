@@ -3,27 +3,45 @@
 * @Date:   2016-06-26 17:57:00
 * @Email:  zyy7259@gmail.com
 * @Last modified by:   zyy
-* @Last modified time: 2016-07-08 13:06:04
+* @Last modified time: 2016-07-09 19:26:43
 */
 
 var env = require('./env')
 var path = require('path')
 var webpack = require('webpack')
+var precss = require('precss')
+var postcssCustomProperties = require('postcss-custom-properties')
+var postcssCalc = require('postcss-calc')
+var autoprefixer = require('autoprefixer')
+var cssnano = require('cssnano')
+var arrProto = Array.prototype
 // var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 var config = {
   entry: './src/index',
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: 'regular-strap.js',
-    library: 'RegularStrap',
+    filename: 'lib.js',
+    library: 'Lib',
     libraryTarget: 'umd'
   },
   module: {
     loaders: [
       { test: /\.html$/, loader: 'raw' },
-      { test: /\.yaml$/, loader: 'json!yaml' }
+      { test: /\.yaml$/, loader: 'json!yaml' },
+      {
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        loader: 'babel',
+        query: {
+          presets: ['es2015-loose'],
+          cacheDirectory: true
+        }
+      }
     ]
+  },
+  postcss: function () {
+    return [precss, postcssCustomProperties, postcssCalc, autoprefixer, cssnano]
   },
   resolve: {
     root: [
@@ -64,7 +82,7 @@ if (!isProduction) {
   config.devtool = 'eval'
 } else {
   config.output.filename = config.output.filename.replace('.js', '.min.js')
-  [].push.apply(config.plugins, [
+  arrProto.push.apply(config.plugins, [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {

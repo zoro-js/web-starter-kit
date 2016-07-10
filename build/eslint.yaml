@@ -5,13 +5,15 @@
 # @Last modified time: 2016-06-30 13:49:07
 
 env:
+  es6: true
   browser: true
+  node: true
+  amd: true
   commonjs: true
   jasmine: true
 extends: standard
 globals:
   _: false
-  define: false
   Regular: false
   restate: false
   RegularStrap: false

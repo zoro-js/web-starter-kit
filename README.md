@@ -3,13 +3,13 @@
 @Date:   2016-06-25 21:25:00
 @Email:  zyy7259@gmail.com
 @Last modified by:   zyy
-@Last modified time: 2016-07-09 20:19:88
+@Last modified time: 2016-07-09 23:28:07
 -->
 
 # install the followings locally which can not be installed globally
 
 ```javascript
-npm install babel-loader babel-core babel-preset-es2015 babel-preset-es2015-loose --save-dev
+npm install babel-loader babel-core babel-preset-es2015 --save-dev
 // http://stackoverflow.com/questions/33512715/babel-6-0-20-modules-feature-not-work-in-ie8
 npm install babel-plugin-transform-es3-member-expression-literals babel-plugin-transform-es3-property-literals --save-dev
 npm install html-loader json-loader raw-loader yaml-loader --save-dev

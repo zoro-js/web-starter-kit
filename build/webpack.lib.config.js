@@ -6,6 +6,7 @@
 * @Last modified time: 2016-07-09 20:20:45
 */
 
+var pjson = require('../package.json')
 var env = require('./env')
 var path = require('path')
 var webpack = require('webpack')
@@ -14,7 +15,6 @@ var postcssCustomProperties = require('postcss-custom-properties')
 var postcssCalc = require('postcss-calc')
 var autoprefixer = require('autoprefixer')
 var cssnano = require('cssnano')
-var arrProto = Array.prototype
 // var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 var config = {
@@ -29,6 +29,7 @@ var config = {
     loaders: [
       { test: /\.html$/, loader: 'raw' },
       { test: /\.yaml$/, loader: 'json!yaml' },
+      { test: /\.css$/, loader: 'style!css!postcss' },
       {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
@@ -70,6 +71,12 @@ var config = {
         amd: 'Regular',
         commonjs: 'regularjs',
         commonjs2: 'regularjs'
+      },
+      'lodash': {
+        root: 'Lodash',
+        amd: 'Lodash',
+        commonjs: 'lodash',
+        commonjs2: 'lodash'
       }
     }
   ],
@@ -88,8 +95,8 @@ if (!isProduction) {
   config.output.pathinfo = true
   config.devtool = 'eval'
 } else {
-  config.output.filename = config.output.filename.replace('.js', '.min.js')
-  arrProto.push.apply(config.plugins, [
+  config.output.filename = config.output.filename.replace('.js', '.' + pjson.version + '.min.js')
+  Array.prototype.push.apply(config.plugins, [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {

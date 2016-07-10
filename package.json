@@ -26,7 +26,7 @@
     "build:js": "webpack --config build/webpack.config.js",
     "build:js:stats": "npm run build:js -- --profile --json > dist/webpack-stats.json",
 
-    "watch": "run-p -lns watch:*",
+    "watch": "run-p watch:*",
     "watch:css": "npm run build:css --silent -- --watch",
     "watch:js": "npm run build:js --silent -- --watch",
     "watch:lint": "watch 'npm run lint' -du --interval=0.25 --ignoreDirectoryPattern='/third|submodule|dist|node_modules/i' --filter=build/watchFilter.eslint.js",

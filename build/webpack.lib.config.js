@@ -3,7 +3,7 @@
 * @Date:   2016-06-26 17:57:00
 * @Email:  zyy7259@gmail.com
 * @Last modified by:   zyy
-* @Last modified time: 2016-07-09 20:20:45
+* @Last modified time: 2016-07-11T11:44:22+08:00
 */
 
 var pjson = require('../package.json')
@@ -40,6 +40,7 @@ var config = {
           plugins: [
             'transform-es3-property-literals',
             'transform-es3-member-expression-literals',
+            'add-module-exports',
             ['transform-es2015-modules-commonjs', {
               loose: true
             }]

@@ -2,7 +2,7 @@
 * @Author: Zhang Yingya(hzzhangyingya)
 * @Date:   2016-05-16 21:15:10
 * @Last modified by:   zyy
-* @Last modified time: 2016-07-08 13:06:65
+* @Last modified time: 2016-07-11T11:44:13+08:00
 */
 
 var env = require('./env')
@@ -34,7 +34,25 @@ var config = {
   module: {
     loaders: [
       { test: /\.html$/, loader: 'raw' },
-      { test: /\.yaml$/, loader: 'json!yaml' }
+      { test: /\.yaml$/, loader: 'json!yaml' },
+      { test: /\.css$/, loader: 'style!css!postcss' },
+      {
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        loader: 'babel',
+        query: {
+          presets: ['es2015'],
+          cacheDirectory: true,
+          plugins: [
+            'transform-es3-property-literals',
+            'transform-es3-member-expression-literals',
+            'add-module-exports',
+            ['transform-es2015-modules-commonjs', {
+              loose: true
+            }]
+          ]
+        }
+      }
     ]
   },
   resolve: {

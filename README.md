@@ -2,9 +2,15 @@
 @Author: Yingya Zhang <zyy>
 @Date:   2016-06-25 21:25:00
 @Email:  zyy7259@gmail.com
-@Last modified by:   
-@Last modified time: 2016-07-11T11:30:29+08:00
+@Last modified by:   zyy
+@Last modified time: 2016-07-14T15:50:39+08:00
 -->
+
+# es5 -> es6
+
+- module.exports/require -> import/export
+- self/that -> () => {}
+- var -> let/const
 
 # install the followings locally which can not be installed globally
 

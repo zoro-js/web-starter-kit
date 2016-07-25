@@ -2,17 +2,17 @@
 # @Date:   2016-05-16 16:04:00
 # @Email:  zyy7259@gmail.com
 # @Last modified by:   zyy
-# @Last modified time: 2016-06-30 13:49:07
+# @Last modified time: 2016-07-25T15:22:40+08:00
 
 env:
-  es6: true
   browser: true
-  node: true
   amd: true
   commonjs: true
   jasmine: true
+# standard defines env 'ndoe' & 'es6', which will be merged with env above
 extends: standard
 globals:
+  $: false
   _: false
   Regular: false
   restate: false

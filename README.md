@@ -3,7 +3,7 @@
 @Date:   2016-06-25 21:25:00
 @Email:  zyy7259@gmail.com
 @Last modified by:   zyy
-@Last modified time: 2016-07-14T15:50:39+08:00
+@Last modified time: 2016-08-06T11:13:18+08:00
 -->
 
 # es5 -> es6
@@ -15,7 +15,7 @@
 # install the followings locally which can not be installed globally
 
 ```javascript
-npm install babel-loader babel-core babel-preset-es2015 --save-dev
+npm install babel-loader babel-core babel-preset-es2015 babel-preset-stage-3 --save-dev
 // http://stackoverflow.com/questions/33512715/babel-6-0-20-modules-feature-not-work-in-ie8
 npm install babel-plugin-transform-es3-member-expression-literals babel-plugin-transform-es3-property-literals --save-dev
 // https://www.npmjs.com/package/babel-plugin-add-module-exports

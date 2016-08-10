@@ -3,7 +3,7 @@
 * @Date:   2016-08-06T17:13:40+08:00
 * @Email:  zyy7259@gmail.com
 * @Last modified by:   zyy
-* @Last modified time: 2016-08-06T17:25:20+08:00
+* @Last modified time: 2016-08-06T19:31:02+08:00
 */
 
 var env = require('./env')
@@ -13,9 +13,9 @@ var webpack = require('webpack')
 var config = {
   module: {
     loaders: [
-      { test: /\.html$/, loader: 'raw' },
-      { test: /\.yaml$/, loader: 'json!yaml' },
-      { test: /\.css$/, loader: 'style!css!postcss' },
+      {test: /\.html$/, loader: 'raw'},
+      {test: /\.yaml$/, loader: 'json!yaml'},
+      {test: /\.css$/, loader: 'style!css!postcss'},
       {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,

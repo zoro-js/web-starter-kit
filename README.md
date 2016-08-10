@@ -3,7 +3,7 @@
 @Date:   2016-06-25 21:25:00
 @Email:  zyy7259@gmail.com
 @Last modified by:   zyy
-@Last modified time: 2016-08-06T11:13:18+08:00
+@Last modified time: 2016-08-07T00:24:51+08:00
 -->
 
 # es5 -> es6
@@ -11,6 +11,9 @@
 - module.exports/require -> import/export
 - self/that -> () => {}
 - var -> let/const
+- object-shorthand
+  - key: key -> key
+  - a: function() {} -> a() {}
 
 # install the followings locally which can not be installed globally
 
@@ -28,7 +31,7 @@ npm install style-loader css-loader postcss-loader precss postcss-calc postcss-c
 
 ```
 npm install rimraf -g
-npm install eslint eslint-config-standard eslint-plugin-promise -g eslint-plugin-standard
+npm install eslint eslint-config-standard eslint-plugin-promise -g eslint-plugin-standard babel-eslint eslint-plugin-babel
 npm install postcss postcss-cli -g
 npm install webpack webpack-dev-server -g
 npm install watch -g
@@ -41,19 +44,10 @@ npm install url -g
 npm install xhr -g
 ```
 
-or
+# problems
 
-```
-npm install rimraf --save-dev
-npm install eslint eslint-config-standard eslint-plugin-promise --save-dev eslint-plugin-standard
-npm install postcss postcss-cli --save-dev
-npm install webpack webpack-dev-server --save-dev
-npm install watch --save-dev
+https://github.com/eslint/eslint/issues/6274#issuecomment-228420692
 
-npm install regular-state regularjs stateman --save-dev
-npm install fs-extra --save-dev
-npm install lodash --save-dev
-npm install once --save-dev
-npm install url --save-dev
-npm install xhr --save-dev
-```
+# koa
+
+npm i -g koa@next koa-router@next koa-mount koa-send koa-static

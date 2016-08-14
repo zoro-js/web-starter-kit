@@ -71,6 +71,7 @@ if (!isProduction) {
     }),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.LimitChunkCountPlugin({maxChunks: 15}),
+    // in chars (a char is a byte)
     new webpack.optimize.MinChunkSizePlugin({minChunkSize: 10000})
   ]
 }

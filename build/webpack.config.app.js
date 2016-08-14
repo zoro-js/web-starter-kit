@@ -47,7 +47,10 @@ Object.assign(config.resolve.alias, {
 })
 
 Array.prototype.push.apply(config.plugins, [
-  new webpack.optimize.CommonsChunkPlugin('common.js')
+  new webpack.optimize.CommonsChunkPlugin({
+    name: 'common',
+    minChunks: 2
+  })
 ])
 
 var isProduction = env.isProduction()

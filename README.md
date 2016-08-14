@@ -19,12 +19,11 @@
 
 ```javascript
 npm i watch rimraf fs-extra eslint-config-zorojs --save-dev
-npm i webpack webpack-dev-server babel-loader babel-core babel-preset-es2015 babel-preset-stage-3 --save-dev
-npm install html-loader json-loader raw-loader yaml-loader style-loader css-loader postcss-loader --save-dev
-npm install postcss-cli postcss precss postcss-calc autoprefixer postcss-sprites --save-dev
+npm i webpack webpack-dev-server html-loader json-loader raw-loader yaml-loader style-loader css-loader  --save-dev
+npm install postcss postcss-cli postcss-loader precss postcss-calc autoprefixer postcss-sprites --save-dev
 // http://stackoverflow.com/questions/33512715/babel-6-0-20-modules-feature-not-work-in-ie8
 // https://www.npmjs.com/package/babel-plugin-add-module-exports
-npm install babel-plugin-transform-es3-member-expression-literals babel-plugin-transform-es3-property-literals babel-plugin-add-module-exports --save-dev
+npm install babel-loader babel-core babel-preset-es2015 babel-preset-stage-3 babel-plugin-transform-es3-member-expression-literals babel-plugin-transform-es3-property-literals babel-plugin-add-module-exports --save-dev
 ```
 
 # install the followings devDependencies globally or locally

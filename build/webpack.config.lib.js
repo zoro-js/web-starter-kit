@@ -11,16 +11,18 @@ var env = require('./env')
 var path = require('path')
 // var HtmlWebpackPlugin = require('html-webpack-plugin')
 
-var config = require('./webpack.base.config.js')
+var config = require('./webpack.config.base.js')
+
+config.entry = './src/index'
+
+Object.assign(config.output, {
+  path: path.join(process.cwd(), '../dist'),
+  filename: 'lib.js',
+  library: 'Lib',
+  libraryTarget: 'umd'
+})
 
 Object.assign(config, {
-  entry: './src/index',
-  output: {
-    path: path.resolve(__dirname, '../dist'),
-    filename: 'lib.js',
-    library: 'Lib',
-    libraryTarget: 'umd'
-  },
   postcss () {
     return [
       require('precss'),
@@ -56,7 +58,7 @@ Object.assign(config, {
 
 Object.assign(config.resolve, {
   root: [
-    path.resolve(__dirname, '../src')
+    path.join(process.cwd(), '../src')
   ]
 })
 

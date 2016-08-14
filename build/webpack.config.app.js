@@ -11,10 +11,10 @@ var fs = require('fs-extra')
 var path = require('path')
 // var HtmlWebpackPlugin = require('html-webpack-plugin')
 
-var config = require('./webpack.base.config.js')
+var config = require('./webpack.config.base.js')
 
 function genEntry () {
-  var entryDir = path.resolve(__dirname, '../src/js/entry')
+  var entryDir = path.join(process.cwd(), 'src/js/entry')
   var filenameList = fs.readdirSync(entryDir)
   var entry = {}
   filenameList.forEach(function (filename) {
@@ -28,24 +28,25 @@ function genEntry () {
 }
 
 Object.assign(config, {
-  entry: genEntry(),
-  output: {
-    path: path.join(__dirname, '../dist/js'),
-    filename: '[name].js'
-  }
+  entry: genEntry()
+})
+
+Object.assign(config.output, {
+  path: path.join(process.cwd(), 'dist/js'),
+  filename: '[name].js'
 })
 
 Object.assign(config.resolve, {
   root: [
-    path.resolve(__dirname, '../src/js')
+    path.join(process.cwd(), 'src/js')
   ]
 })
 
 Object.assign(config.resolve.alias, {
-  'strap': path.resolve(__dirname, '../submodule/regular-strap/src')
+  'strap': path.join(process.cwd(), 'submodule/regular-strap/src')
 })
 
-config.plugins.push([
+Array.prototype.push.apply(config.plugins, [
   new webpack.optimize.CommonsChunkPlugin('common.js')
 ])
 

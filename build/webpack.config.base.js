@@ -11,6 +11,7 @@ var path = require('path')
 var webpack = require('webpack')
 
 var config = {
+  output: {},
   module: {
     loaders: [
       {test: /\.html$/, loader: 'raw'},
@@ -37,11 +38,11 @@ var config = {
   },
   resolve: {
     alias: {
-      'data': path.resolve(__dirname, '../data'),
-      'zoro-base': path.resolve(__dirname, '../submodule/zoro-base/src'),
-      'regularjs': path.resolve(__dirname, '../node_modules/regularjs/dist/regular'),
-      'restate': path.resolve(__dirname, '../node_modules/regular-state/restate-full'),
-      'stateman': path.resolve(__dirname, '../node_modules/stateman/stateman')
+      'data': path.join(process.cwd(), 'data'),
+      'zoro-base': path.join(process.cwd(), 'submodule/zoro-base/src'),
+      'regularjs': path.join(process.cwd(), 'node_modules/regularjs/dist/regular'),
+      'restate': path.join(process.cwd(), 'node_modules/regular-state/restate-full'),
+      'stateman': path.join(process.cwd(), 'node_modules/stateman/stateman')
     },
     extensions: ['', '.js', '.json', '.yaml']
   },

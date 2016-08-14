@@ -21,7 +21,7 @@ Object.assign(config, {
     library: 'Lib',
     libraryTarget: 'umd'
   },
-  postcss: function () {
+  postcss () {
     return [
       require('precss'),
       require('postcss-custom-properties'),
@@ -43,6 +43,12 @@ Object.assign(config, {
         amd: 'Lodash',
         commonjs: 'lodash',
         commonjs2: 'lodash'
+      },
+      'zoro-base': {
+        root: 'ZoroBase',
+        amd: 'ZoroBase',
+        commonjs2: 'zoro-base',
+        commonjs: 'zoro-base'
       }
     }
   ]
@@ -56,10 +62,14 @@ Object.assign(config.resolve, {
 
 var isProduction = env.isProduction()
 if (isProduction) {
-  config = [config, Object.assign({}, config)]
+  config = [config, Object.assign({}, config), Object.assign({}, config)]
   config[0].output = Object.assign({}, config[0].output)
-  config[0].output.filename = config[0].output.filename.replace('.js', '.min.js')
-  config[1].output.filename = config[1].output.filename.replace('.js', '.' + pjson.version + '.min.js')
+  config[0].plugins = config[0].plugins.slice(0)
+  config[1].output = Object.assign({}, config[1].output)
+  config[1].output.filename = config[1].output.filename.replace('.js', '.min.js')
+  config[2].output = Object.assign({}, config[2].output)
+  config[2].output.filename = config[2].output.filename.replace('.js', '.' + pjson.version + '.min.js')
+  Array.prototype.push.apply(config[1].plugins, config.optimizePlugins)
 }
 
 module.exports = config

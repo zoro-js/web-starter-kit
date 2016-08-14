@@ -18,26 +18,19 @@
 # install the followings locally which can not be installed globally
 
 ```javascript
-npm install babel-loader babel-core babel-preset-es2015 babel-preset-stage-3 --save-dev
+npm i watch rimraf fs-extra eslint-config-zorojs --save-dev
+npm i webpack webpack-dev-server babel-loader babel-core babel-preset-es2015 babel-preset-stage-3 --save-dev
+npm install html-loader json-loader raw-loader yaml-loader style-loader css-loader postcss-loader --save-dev
+npm install postcss-cli postcss precss postcss-calc autoprefixer postcss-sprites --save-dev
 // http://stackoverflow.com/questions/33512715/babel-6-0-20-modules-feature-not-work-in-ie8
-npm install babel-plugin-transform-es3-member-expression-literals babel-plugin-transform-es3-property-literals --save-dev
 // https://www.npmjs.com/package/babel-plugin-add-module-exports
-npm install babel-plugin-add-module-exports --save-dev
-npm install html-loader json-loader raw-loader yaml-loader --save-dev
-npm install style-loader css-loader postcss-loader precss postcss-calc postcss-custom-properties autoprefixer --save-dev
+npm install babel-plugin-transform-es3-member-expression-literals babel-plugin-transform-es3-property-literals babel-plugin-add-module-exports --save-dev
 ```
 
 # install the followings devDependencies globally or locally
 
 ```
-npm install rimraf -g
-npm install eslint eslint-config-standard eslint-plugin-promise -g eslint-plugin-standard babel-eslint eslint-plugin-babel
-npm install postcss postcss-cli -g
-npm install webpack webpack-dev-server -g
-npm install watch -g
-
 npm install regular-state regularjs stateman -g
-npm install fs-extra -g
 npm install lodash -g
 npm install once -g
 npm install url -g
@@ -50,4 +43,4 @@ https://github.com/eslint/eslint/issues/6274#issuecomment-228420692
 
 # koa
 
-npm i -g koa@next koa-router@next koa-mount koa-send koa-static
+npm i -g koa@next koa-compose@next koa-convert koa-mount@next koa-router@next koa-send koa-session koa-static@next koa-bodyparser@next

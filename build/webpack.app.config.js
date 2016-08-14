@@ -6,6 +6,7 @@
 */
 
 var env = require('./env')
+var webpack = require('webpack')
 var fs = require('fs-extra')
 var path = require('path')
 // var HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -47,5 +48,10 @@ Object.assign(config.resolve.alias, {
 config.plugins.push([
   new webpack.optimize.CommonsChunkPlugin('common.js')
 ])
+
+var isProduction = env.isProduction()
+if (isProduction) {
+  Array.prototype.push.apply(config.plugins, config.optimizePlugins)
+}
 
 module.exports = config

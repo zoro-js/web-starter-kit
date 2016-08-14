@@ -22,8 +22,8 @@ var config = {
         loader: 'babel',
         query: {
           presets: [
-            ["es2015", {"loose": true, "modules": "commonjs"}],
-            ["stage-3"]
+            ['es2015', {'loose': true, 'modules': 'commonjs'}],
+            ['stage-3']
           ],
           cacheDirectory: true,
           plugins: [
@@ -60,7 +60,7 @@ if (!isProduction) {
   config.output.pathinfo = true
   config.devtool = 'eval'
 } else {
-  Array.prototype.push.apply(config.plugins, [
+  config.optimizePlugins = [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
@@ -71,7 +71,7 @@ if (!isProduction) {
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.LimitChunkCountPlugin({maxChunks: 15}),
     new webpack.optimize.MinChunkSizePlugin({minChunkSize: 10000})
-  ])
+  ]
 }
 
 module.exports = config

@@ -40,6 +40,7 @@ var config = {
     alias: {
       'data': path.join(process.cwd(), 'data'),
       'zoro-base': path.join(process.cwd(), 'submodule/zoro-base/src'),
+      'vuejs': path.join(process.cwd(), 'node_modules/vue/dist/vue.min.js'),
       'regularjs': path.join(process.cwd(), 'node_modules/regularjs/dist/regular'),
       'restate': path.join(process.cwd(), 'node_modules/regular-state/restate-full'),
       'stateman': path.join(process.cwd(), 'node_modules/stateman/stateman')
@@ -48,6 +49,7 @@ var config = {
   },
   plugins: [
     new webpack.ProvidePlugin({
+      Vue: 'vuejs',
       Regular: 'regularjs',
       restate: 'restate',
       _: 'lodash'

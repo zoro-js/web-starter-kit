@@ -52,6 +52,7 @@ var config = {
       Vue: 'vuejs',
       Regular: 'regularjs',
       restate: 'restate',
+      restrap: 'regular-strap',
       _: 'lodash'
     })
   ]

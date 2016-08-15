@@ -1,11 +1,3 @@
-<!--
-@Author: Yingya Zhang <zyy>
-@Date:   2016-06-25 21:25:00
-@Email:  zyy7259@gmail.com
-@Last modified by:   zyy
-@Last modified time: 2016-08-07T00:24:51+08:00
--->
-
 # es5 -> es6
 
 - module.exports/require -> import/export

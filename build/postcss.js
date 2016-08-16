@@ -38,7 +38,11 @@ let config = {
     })(),
     groupBy: (() => {
       const basedir = '/res/img/'
-      const sep = new RegExp(path.sep, 'ig')
+      let sep = path.sep
+      if (sep === '\\') {
+        sep = '\\\\'
+      }
+      sep = new RegExp(sep, 'ig')
       return function (image) {
         // one group for each dir
         const dirname = path.dirname(image.url)

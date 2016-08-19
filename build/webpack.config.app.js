@@ -19,10 +19,10 @@ function genEntry () {
   var entry = {}
   filenameList.forEach(function (filename) {
     var index = filename.lastIndexOf('.')
-    if (index === filename.length - 3) {
-      var name = filename.slice(0, index)
-      entry[name] = path.resolve(entryDir, filename)
-    }
+    var ext = filename.slice(index + 1)
+    if (ext !== 'js') return
+    var name = filename.slice(0, index)
+    entry[name] = path.resolve(entryDir, filename)
   })
   return entry
 }

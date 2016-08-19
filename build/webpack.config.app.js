@@ -5,25 +5,26 @@
 * @Last modified time: 2016-08-06T17:26:19+08:00
 */
 
-var env = require('./env')
-var webpack = require('webpack')
-var fs = require('fs-extra')
-var path = require('path')
-// var HtmlWebpackPlugin = require('html-webpack-plugin')
+const debug = require('debug')('webpack:app')
+const env = require('./env')
+const webpack = require('webpack')
+const path = require('path')
+const globby = require('zoro-globby')
+// const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-var config = require('./webpack.config.base.js')
+const config = require('./webpack.config.base.js')
 
 function genEntry () {
-  var entryDir = path.join(process.cwd(), 'src/js/entry')
-  var filenameList = fs.readdirSync(entryDir)
-  var entry = {}
-  filenameList.forEach(function (filename) {
-    var index = filename.lastIndexOf('.')
-    var ext = filename.slice(index + 1)
-    if (ext !== 'js') return
-    var name = filename.slice(0, index)
-    entry[name] = path.resolve(entryDir, filename)
+  const entryDir = path.join(process.cwd(), 'src/js/entry')
+  const filepathList = globby.sync('**/*.js', entryDir)
+  debug('filepathList', filepathList)
+  const entry = {}
+  filepathList.forEach(function (filepath) {
+    const index = filepath.lastIndexOf('.')
+    const name = filepath.slice(0, index).replace(entryDir + '/', '').replace(/\/|\\\\/, '.')
+    entry[name] = filepath
   })
+  debug('entry', entry)
   return entry
 }
 
@@ -53,7 +54,7 @@ Array.prototype.push.apply(config.plugins, [
   })
 ])
 
-var isProduction = env.isProduction()
+const isProduction = env.isProduction()
 if (isProduction) {
   Array.prototype.push.apply(config.plugins, config.optimizePlugins)
 }

@@ -6,12 +6,12 @@
 * @Last modified time: 2016-08-06T17:27:45+08:00
 */
 
-var pjson = require('../package.json')
-var env = require('./env')
-var path = require('path')
-// var HtmlWebpackPlugin = require('html-webpack-plugin')
+const pjson = require('../package.json')
+const env = require('./env')
+const path = require('path')
+// const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-var config = require('./webpack.config.base.js')
+let config = require('./webpack.config.base.js')
 
 config.entry = './src/index'
 
@@ -62,7 +62,7 @@ Object.assign(config.resolve, {
   ]
 })
 
-var isProduction = env.isProduction()
+const isProduction = env.isProduction()
 if (isProduction) {
   config = [config, Object.assign({}, config), Object.assign({}, config)]
   config[0].output = Object.assign({}, config[0].output)

@@ -1,6 +1,6 @@
 {
   "name": "zoro-kit",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "",
   "main": "src/index.js",
   "directories": {
@@ -45,7 +45,6 @@
     "babel-preset-stage-3": "^6.11.0",
     "css-loader": "^0.23.1",
     "eslint-config-zorojs": "0.0.2",
-    "fs-extra": "^0.30.0",
     "html-loader": "^0.4.3",
     "json-loader": "^0.5.4",
     "npm-run-all": "^2.3.0",
@@ -61,6 +60,7 @@
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1",
     "yaml-loader": "^0.4.0",
+    "zoro-globby": "0.0.1",
     "zoro-postcss-cli": "0.0.1"
   }
 }

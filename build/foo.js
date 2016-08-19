@@ -5,7 +5,6 @@
 * @Last modified time: 2016-07-22T14:54:29+08:00
 */
 
-
 var log = require('./log')
 
 log('__dirname', __dirname)
@@ -21,6 +20,10 @@ log({'process.env.NODE_ENV': '' + process.env.NODE_ENV})
 
 var path = require('path')
 
-log({'path.join': path.join('a', 'b')})
-
-log({'path.resolve': path.resolve('a', 'b')})
+log(path.join('a', 'b'))
+log(path.join('a/', 'b'))
+log(path.join('a/', '/b'))
+log(path.resolve('a', 'b'))
+log(path.resolve('a/', 'b'))
+log(path.resolve('a', '/b'))
+log(path.resolve('a/', '/b'))

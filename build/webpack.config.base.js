@@ -6,11 +6,11 @@
 * @Last modified time: 2016-08-06T19:31:02+08:00
 */
 
-var env = require('./env')
-var path = require('path')
-var webpack = require('webpack')
+const env = require('./env')
+const path = require('path')
+const webpack = require('webpack')
 
-var config = {
+const config = {
   output: {},
   module: {
     loaders: [
@@ -58,7 +58,7 @@ var config = {
   ]
 }
 
-var isProduction = env.isProduction()
+const isProduction = env.isProduction()
 if (!isProduction) {
   // sourceMap 相关
   config.output.pathinfo = true

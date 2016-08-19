@@ -17,8 +17,8 @@ let config = {
     browsers: ['Android >= 4', 'iOS >= 7', 'Chrome >= 10', 'Firefox >= 10', 'IE >= 8']
   },
   'postcss-sprites': {
-    stylesheetPath: path.join(__dirname, '../dist/css'),
-    spritePath: path.join(__dirname, '../dist/img'),
+    stylesheetPath: path.join(process.cwd(), 'dist/css'),
+    spritePath: path.join(process.cwd(), 'dist/img'),
     retina: true,
     filterBy: (() => {
       const path = /sprite/i

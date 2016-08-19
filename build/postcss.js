@@ -1,10 +1,3 @@
-/*
-* @Author: Zhang Yingya(hzzhangyingya)
-* @Date:   2016-06-13 22:47:04
-* @Last modified by:   zyy_hzzhangyingya
-* @Last modified time: 2016-06-21 00:04:96
-*/
-
 const env = require('./env')
 const path = require('path')
 const postcss = require('postcss')
@@ -26,31 +19,36 @@ let config = {
   'postcss-sprites': {
     stylesheetPath: path.join(__dirname, '../dist/css'),
     spritePath: path.join(__dirname, '../dist/img'),
+    retina: true,
     filterBy: (() => {
+      const path = /sprite/i
       const png = /\.png$/i
       return function (image) {
-        // Allow only png files
-        if (!png.test(image.url)) {
+        // Allow only png files whose path containing 'sprite'
+        if (!png.test(image.url) || !path.test(image.url)) {
           return Promise.reject()
         }
         return Promise.resolve()
       }
     })(),
     groupBy: (() => {
-      const basedir = '/res/img/'
-      let sep = path.sep
-      if (sep === '\\') {
-        sep = '\\\\'
-      }
-      sep = new RegExp(sep, 'ig')
+      const basedir = '/res/img/sprite/'
+      const sep = /\\\\|\//ig
       return function (image) {
         // one group for each dir
         const dirname = path.dirname(image.url)
-        const group = dirname.replace(basedir, '').replace(sep, '-')
+        const group = dirname.replace(basedir, '').replace(sep, '.')
         return Promise.resolve(group)
       }
     })(),
     hooks: {
+      // 名字会有很多 @2x, 好像 group 重复了很多遍
+      onSaveSpritesheet (opts, groups = []) {
+        groups = groups.filter((item, index) => {
+          return groups.indexOf(item) === index
+        })
+        return path.join(opts.spritePath, ['sprite', ...groups, 'png'].join('.'))
+      },
       onUpdateRule: (() => {
         const updateRule = sprites.updateRule
         const props = ['width', 'height']

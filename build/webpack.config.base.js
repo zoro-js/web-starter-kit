@@ -56,7 +56,7 @@ const config = {
       'restate': path.join(process.cwd(), 'node_modules/regular-state/restate-full'),
       'stateman': path.join(process.cwd(), 'node_modules/stateman/stateman')
     },
-    extensions: ['', '.js', '.json', '.yaml']
+    extensions: ['', '.js', '.vue', '.json', '.yaml']
   },
   plugins: [
     new webpack.ProvidePlugin({

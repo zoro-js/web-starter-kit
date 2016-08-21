@@ -47,7 +47,8 @@ const config = {
   resolve: {
     alias: {
       'data': path.join(process.cwd(), 'data'),
-      'vuejs': path.join(process.cwd(), 'node_modules/vue/dist/vue.min.js'),
+      // the main file of vue 2.0 is ok, so no need to redefine
+      // 'vuejs': path.join(process.cwd(), 'node_modules/vue/dist/vue.min.js'),
       'regularjs': path.join(process.cwd(), 'node_modules/regularjs/dist/regular'),
       'restate': path.join(process.cwd(), 'node_modules/regular-state/restate-full'),
       'stateman': path.join(process.cwd(), 'node_modules/stateman/stateman')
@@ -56,7 +57,7 @@ const config = {
   },
   plugins: [
     new webpack.ProvidePlugin({
-      Vue: 'vuejs',
+      Vue: 'vue',
       Regular: 'regularjs',
       restate: 'restate',
       restrap: 'regular-strap',

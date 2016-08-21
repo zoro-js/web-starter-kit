@@ -17,6 +17,7 @@ const config = {
       {test: /\.html$/, loader: 'raw'},
       {test: /\.yaml$/, loader: 'json!yaml'},
       {test: /\.css$/, loader: 'style!css!postcss'},
+      {test: /\.vue$/, loader: 'vue'},
       {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
@@ -64,12 +65,16 @@ if (!isProduction) {
   config.devtool = 'eval'
 } else {
   config.optimizePlugins = [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"production"'
+      }
+    }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
-      },
-      sourceMap: false
+      }
     }),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.LimitChunkCountPlugin({maxChunks: 15}),

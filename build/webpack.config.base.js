@@ -15,8 +15,8 @@ const excludeJSReg = /(node_modules|bower_components)/
 const config = {
   output: {},
   eslint: {
-    configFile: path.join(process.cwd(), '.eslintrc.yaml'),
-    cache: true
+    configFile: path.join(process.cwd(), '.eslintrc.yaml')
+    // do not enable cache, it will not work properly
   },
   // when used with vue, the babel config should be placed here
   // http://vue-loader.vuejs.org/en/features/es2015.html

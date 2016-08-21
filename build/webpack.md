@@ -17,6 +17,7 @@
     - LimitChunkCountPlugin: Limit the chunk count to a defined value. Chunks are merged until it fits.
     - MinChunkSizePlugin: Merge small chunks that are lower than this min size (in chars). An ASCII character in 8-bit ASCII encoding is 8 bits (1 byte).
 - TODO
+  - https://github.com/webpack/file-loader
   - optimization
     - Single-Page-App
     - Multi-Page-App

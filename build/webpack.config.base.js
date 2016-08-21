@@ -29,9 +29,12 @@ const config = {
           ],
           cacheDirectory: true,
           plugins: [
-            'add-module-exports',
             'transform-es3-property-literals',
-            'transform-es3-member-expression-literals'
+            'transform-es3-member-expression-literals',
+            'add-module-exports',
+            // the 'transform-runtime' plugin tells babel to require the runtime
+            // instead of inlining it.
+            'transform-runtime'
           ]
         }
       },

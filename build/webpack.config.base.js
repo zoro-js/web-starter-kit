@@ -34,6 +34,13 @@ const config = {
             'transform-es3-member-expression-literals'
           ]
         }
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif|svg)$/,
+        loader: 'file',
+        query: {
+          name: '[name].[ext]?[hash]'
+        }
       }
     ]
   },
@@ -64,6 +71,7 @@ if (!isProduction) {
   config.output.pathinfo = true
   config.devtool = 'eval'
 } else {
+  config.devtool = '#source-map'
   config.optimizePlugins = [
     new webpack.DefinePlugin({
       'process.env': {

@@ -12,6 +12,23 @@ const webpack = require('webpack')
 
 const config = {
   output: {},
+  // when used with vue, the babel config should be placed here
+  // http://vue-loader.vuejs.org/en/features/es2015.html
+  babel: {
+    presets: [
+      ['es2015', {'loose': true, 'modules': 'commonjs'}],
+      ['stage-3']
+    ],
+    cacheDirectory: true,
+    plugins: [
+      'transform-es3-property-literals',
+      'transform-es3-member-expression-literals',
+      'add-module-exports',
+      // the 'transform-runtime' plugin tells babel to require the runtime
+      // instead of inlining it.
+      'transform-runtime'
+    ]
+  },
   module: {
     loaders: [
       {test: /\.html$/, loader: 'raw'},
@@ -21,27 +38,16 @@ const config = {
       {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
-        loader: 'babel',
-        query: {
-          presets: [
-            ['es2015', {'loose': true, 'modules': 'commonjs'}],
-            ['stage-3']
-          ],
-          cacheDirectory: true,
-          plugins: [
-            'transform-es3-property-literals',
-            'transform-es3-member-expression-literals',
-            'add-module-exports',
-            // the 'transform-runtime' plugin tells babel to require the runtime
-            // instead of inlining it.
-            'transform-runtime'
-          ]
-        }
+        loader: 'babel'
       },
       {
         test: /\.(png|jpg|jpeg|gif|svg)$/,
-        loader: 'file',
+        loader: 'url',
         query: {
+          // limit for base64 inlining in bytes
+          limit: 10000,
+          // custom naming format if file is larger than
+          // the threshold
           name: '[name].[ext]?[hash]'
         }
       }

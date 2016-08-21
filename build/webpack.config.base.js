@@ -10,8 +10,14 @@ const env = require('./env')
 const path = require('path')
 const webpack = require('webpack')
 
+const excludeJSReg = /(node_modules|bower_components)/
+
 const config = {
   output: {},
+  eslint: {
+    configFile: path.join(process.cwd(), '.eslintrc.yaml'),
+    cache: true
+  },
   // when used with vue, the babel config should be placed here
   // http://vue-loader.vuejs.org/en/features/es2015.html
   babel: {
@@ -30,16 +36,15 @@ const config = {
     ]
   },
   module: {
+    preLoaders: [
+      {test: /\.(?:js|vue)$/, loader: 'eslint', exclude: excludeJSReg}
+    ],
     loaders: [
       {test: /\.html$/, loader: 'raw'},
       {test: /\.yaml$/, loader: 'json!yaml'},
       {test: /\.css$/, loader: 'style!css!postcss'},
       {test: /\.vue$/, loader: 'vue'},
-      {
-        test: /\.js$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: 'babel'
-      },
+      {test: /\.js$/, exclude: excludeJSReg, loader: 'babel'},
       {
         test: /\.(png|jpg|jpeg|gif|svg)$/,
         loader: 'url',

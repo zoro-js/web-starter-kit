@@ -20,8 +20,7 @@ function genEntry () {
   debug('filepathList', filepathList)
   const entry = {}
   filepathList.forEach(function (filepath) {
-    const index = filepath.lastIndexOf('.')
-    const name = filepath.slice(0, index).replace(entryDir + '/', '').replace(/\/|\\\\/, '.')
+    const name = path.relative(entryDir, filepath).replace('.js', '')
     entry[name] = filepath
   })
   debug('entry', entry)

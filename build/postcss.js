@@ -1,7 +1,7 @@
 const env = require('./env')
 const path = require('path')
 const postcss = require('postcss')
-const sprites = require('postcss-sprites')
+const updateRule = require('postcss-sprites/lib/core').updateRule
 
 let config = {
   input: 'src/postcss/**/*.css',
@@ -42,15 +42,7 @@ let config = {
       }
     })(),
     hooks: {
-      // 名字会有很多 @2x, 好像 group 重复了很多遍
-      onSaveSpritesheet (opts, groups = []) {
-        groups = groups.filter((item, index) => {
-          return groups.indexOf(item) === index
-        })
-        return path.join(opts.spritePath, ['sprite', ...groups, 'png'].join('.'))
-      },
       onUpdateRule: (() => {
-        const updateRule = sprites.updateRule
         const props = ['width', 'height']
         return function (rule, token, image) {
           // output dimensions

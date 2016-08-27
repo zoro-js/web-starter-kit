@@ -10,7 +10,6 @@ let config = {
   use: [
     'precss',
     'postcss-calc',
-    'postcss-color-function',
     'postcss-sprites',
     'autoprefixer'
   ],

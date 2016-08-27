@@ -1,12 +1,7 @@
-/*
-* @Author: Zhang Yingya(hzzhangyingya)
-* @Date:   2016-06-13 23:02:36
-* @Last modified by:   zyy
-* @Last modified time: 2016-06-16T22:56:31+08:00
-*/
-
 .m-bar {
   position: relative;
+  background-color: #85c99d;
+  border-color: color(#85c99d blackness(+10%))
 }
 
 .m-foo {

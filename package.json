@@ -1,6 +1,6 @@
 {
   "name": "zoro-kit",
-  "version": "0.0.28",
+  "version": "0.0.29",
   "description": "",
   "main": "src/index.js",
   "directories": {
@@ -22,7 +22,7 @@
     "build:js": "webpack --config build/webpack.config.app.js",
     "build:js:stats": "npm run build:js -- --profile --json > dist/webpack-stats.json",
     "watch": "run-p watch:*",
-    "watch-:css": "npm run build:css --silent -- --watch",
+    "watch:css": "npm run build:css --silent -- --watch",
     "watch:js": "npm run build:js --silent -- --watch",
     "watch-:lint": "watch 'npm run lint' -du --interval=0.25 --ignoreDirectoryPattern='/third|submodule|dist|node_modules/i' --filter=build/watchFilter.eslint.js",
     "dev": "npm run watch",
@@ -58,6 +58,7 @@
     "npm-run-all": "^3.0.0",
     "postcss": "^5.1.2",
     "postcss-calc": "^5.3.1",
+    "postcss-color-function": "^2.0.1",
     "postcss-loader": "^0.11.0",
     "postcss-sprites": "^4.0.0",
     "precss": "^1.4.0",

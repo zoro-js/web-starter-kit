@@ -4,7 +4,7 @@ const env = require('./env')
 // const HtmlWebpackPlugin = require('html-webpack-plugin')
 let config = require('./webpack.config.base.js')
 
-module.exports = function (output = {}) {
+module.exports = function ({output = {}, externals = []}) {
   config.entry = './src/index'
 
   Object.assign(config.output, {
@@ -24,28 +24,7 @@ module.exports = function (output = {}) {
         require('cssnano')
       ]
     },
-    externals: [
-      {
-        'regularjs': {
-          root: 'Regular',
-          amd: 'Regular',
-          commonjs: 'regularjs',
-          commonjs2: 'regularjs'
-        },
-        'lodash': {
-          root: 'Lodash',
-          amd: 'Lodash',
-          commonjs: 'lodash',
-          commonjs2: 'lodash'
-        },
-        'zoro-base': {
-          root: 'ZoroBase',
-          amd: 'ZoroBase',
-          commonjs2: 'zoro-base',
-          commonjs: 'zoro-base'
-        }
-      }
-    ]
+    externals
   })
 
   Object.assign(config.resolve, {
@@ -63,7 +42,7 @@ module.exports = function (output = {}) {
     config[1].output.filename = config[1].output.filename.replace('.js', '.min.js')
     config[2].output = Object.assign({}, config[2].output)
     config[2].output.filename = config[2].output.filename.replace('.js', '.' + pjson.version + '.min.js')
-    Array.prototype.push.apply(config[1].plugins, config.optimizePlugins)
+    Array.prototype.push.apply(config[1].plugins, config[1].optimizePlugins)
   }
 
   return config

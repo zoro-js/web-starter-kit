@@ -4,7 +4,7 @@ const postcss = require('postcss')
 const updateRule = require('postcss-sprites/lib/core').updateRule
 
 let config = {
-  input: 'src/postcss/**/*.css',
+  input: 'src/postcss/entry/**/*.css',
   dir: 'dist/css',
   'local-plugins': true,
   use: [

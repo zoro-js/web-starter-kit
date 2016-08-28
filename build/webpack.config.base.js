@@ -1,11 +1,3 @@
-/**
-* @Author: Zhang Yingya(hzzhangyingya) <zyy>
-* @Date:   2016-08-06T17:13:40+08:00
-* @Email:  zyy7259@gmail.com
-* @Last modified by:   zyy
-* @Last modified time: 2016-08-06T19:31:02+08:00
-*/
-
 const env = require('./env')
 const path = require('path')
 const webpack = require('webpack')
@@ -84,6 +76,13 @@ const config = {
 
 const isProduction = env.isProduction()
 if (!isProduction) {
+  Array.prototype.push.apply(config.plugins, [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"development"'
+      }
+    })
+  ])
   // sourceMap 相关
   config.output.pathinfo = true
   config.devtool = 'eval'

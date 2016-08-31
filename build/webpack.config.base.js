@@ -85,7 +85,9 @@ if (!isProduction) {
   ])
   // sourceMap 相关
   config.output.pathinfo = true
-  config.devtool = 'eval'
+  if (!process.env.NO_SOURCE_MAP) {
+    config.devtool = 'eval'
+  }
 } else {
   config.devtool = '#source-map'
   config.optimizePlugins = [

@@ -17,7 +17,8 @@
     - LimitChunkCountPlugin: Limit the chunk count to a defined value. Chunks are merged until it fits.
     - MinChunkSizePlugin: Merge small chunks that are lower than this min size (in chars). An ASCII character in 8-bit ASCII encoding is 8 bits (1 byte).
 - TODO
-  - zoro-base 的 index.js 使用了 delete obj.__esModule
+  - AggressiveMergingPlugin
+  - zoro-base 的 index.js 使用了 delete obj.\_\_esModule
   - https://github.com/webpack/file-loader
   - optimization
     - Single-Page-App
@@ -30,3 +31,7 @@
   - 除了 /src/js 之外的其他 JS 如何 watch 并 lint
   - hash 在 publish 的时候生成 hash
   - HtmlWebpackPlugin https://github.com/ampedandwired/html-webpack-plugin
+
+  - extract filenames from Webpack-generated stats and pre-load specific bundles if you know user's going to hit them.
+    - https://github.com/webpack/docs/wiki/node.js-api#stats
+    - https://github.com/gaearon/promise-loader

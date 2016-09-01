@@ -66,6 +66,7 @@ const config = {
   plugins: [
     new webpack.ProvidePlugin({
       Vue: 'vue',
+      VueRouter: 'vue-router',
       Regular: 'regularjs',
       restate: 'restate',
       restrap: 'regular-strap',

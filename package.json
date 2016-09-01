@@ -1,6 +1,6 @@
 {
   "name": "zoro-kit",
-  "version": "0.0.32",
+  "version": "0.0.33",
   "description": "",
   "main": "src/index.js",
   "directories": {
@@ -11,8 +11,7 @@
     "clean": "run-p -lns clean:*",
     "clean:css": "rimraf dist/css",
     "clean:js": "rimraf dist/js",
-    "clean-dist": "rimraf dist",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean:log": "rimraf logs/*.log",
     "lint": "eslint --color . ; exit 0",
     "build": "run-p -lns build:js build:css",
     "build:favicon": "node build/favicon.js",
@@ -29,10 +28,8 @@
     "prod": "run-p prod:*",
     "prod:js": "cross-env NODE_ENV=production npm run build:js",
     "prod:css": "cross-env NODE_ENV=production npm run build:css",
-    "server": "puer & npm run dev",
-    "archive": "git archive --format zip -o dist/regular-strap.zip master src dist",
-    "prepub": "npm run dist",
-    "foo": "NODE_ENV=production node build/foo.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "puer & npm run dev"
   },
   "author": "",
   "license": "MIT",

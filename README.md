@@ -7,6 +7,10 @@
   - key: key -> key
   - a: function() {} -> a() {}
 
+# install the followings globally
+
+npm i -g npm-run-all rimraf cross-env webpack postcss-cli
+
 # install the followings locally which can not be installed globally
 
 ```javascript

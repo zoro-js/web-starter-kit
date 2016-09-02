@@ -11,7 +11,7 @@
 
 npm i npm-run-all rimraf cross-env webpack postcss-cli pm2 -g
 
-- in production, run `sudo npm run pm2:prod`
+- In production, run `sudo npm run pm2:prod`. If `EACCES` read https://github.com/Unitech/pm2/issues/456. In short, just `pm2 kill` before `sudo`.
 
 # install the followings locally which can not be installed globally
 

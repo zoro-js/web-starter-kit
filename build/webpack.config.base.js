@@ -16,17 +16,17 @@ const config = {
   // http://vue-loader.vuejs.org/en/features/es2015.html
   babel: {
     presets: [
-      ['es2015', {'loose': true, 'modules': 'commonjs'}],
-      ['stage-3']
+      ['stage-3'],
+      ['es2015', {'loose': true, 'modules': 'commonjs'}]
     ],
     cacheDirectory: true,
     plugins: [
-      'transform-es3-property-literals',
-      'transform-es3-member-expression-literals',
-      'add-module-exports',
       // the 'transform-runtime' plugin tells babel to require the runtime
       // instead of inlining it.
-      'transform-runtime'
+      'transform-runtime',
+      'add-module-exports',
+      'transform-es3-property-literals',
+      'transform-es3-member-expression-literals'
     ]
   },
   module: {

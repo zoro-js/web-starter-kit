@@ -9,7 +9,9 @@
 
 # install the followings globally
 
-npm i -g npm-run-all rimraf cross-env webpack postcss-cli
+npm i npm-run-all rimraf cross-env webpack postcss-cli pm2 -g
+
+- in production, run `sudo npm run pm2:prod`
 
 # install the followings locally which can not be installed globally
 

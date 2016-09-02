@@ -1,6 +1,6 @@
 {
   "name": "zoro-kit",
-  "version": "0.0.33",
+  "version": "0.0.34",
   "description": "",
   "main": "src/index.js",
   "directories": {
@@ -29,7 +29,16 @@
     "prod:js": "cross-env NODE_ENV=production npm run build:js",
     "prod:css": "cross-env NODE_ENV=production npm run build:css",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "puer & npm run dev"
+    "server": "puer & npm run dev",
+    "koa": "PORT=4000 DEBUG=app*,-app:responseTime,zoro-log node server/require.js",
+    "pm2": "pm2 start bin/pm2.yaml",
+    "pm2:stop": "pm2 stop bin/pm2.yaml",
+    "prepm2:test": "npm run prod",
+    "pm2:test": "pm2 start bin/pm2-test.yaml",
+    "pm2:test:stop": "pm2 stop bin/pm2-test.yaml",
+    "prepm2:prod": "npm run prod",
+    "pm2:prod": "npm run pm2 -- --env production",
+    "pm2:prod:stop": "npm run pm2:stop"
   },
   "author": "",
   "license": "MIT",

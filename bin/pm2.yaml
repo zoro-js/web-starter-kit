@@ -1,0 +1,16 @@
+script: ./server/require.js
+name: 'supportPlatform'
+env:
+  NODE_ENV: development
+  DEBUG: app*,-app:responseTime,zoro-log
+  LOG_DIR: ./logs
+  PORT: 9000
+env_production:
+  NODE_ENV: production
+  LOG_DIR: /home/nim/apps/node/online/supportPlatformLog
+  PORT: 9000
+log_date_format: YYYY-DD-DD HH:mm:ss:SSS
+error_file: './logs/pm2error.log'
+out_file: './logs/pm2out.log'
+merge_logs: true
+pid_file: './logs/pm2.pid'

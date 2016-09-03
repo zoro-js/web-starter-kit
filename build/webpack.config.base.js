@@ -65,6 +65,8 @@ const config = {
     new webpack.ProvidePlugin({
       Vue: 'vue',
       VueRouter: 'vue-router',
+      Vuex: 'vuex',
+      syncVuexRouter: 'vuex-router-sync',
       Regular: 'regularjs',
       restate: 'restate',
       restrap: 'regular-strap',

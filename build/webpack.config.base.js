@@ -21,9 +21,6 @@ const config = {
     ],
     cacheDirectory: true,
     plugins: [
-      // the 'transform-runtime' plugin tells babel to require the runtime
-      // instead of inlining it.
-      'transform-runtime',
       'add-module-exports',
       'transform-es3-property-literals',
       'transform-es3-member-expression-literals'
@@ -57,9 +54,10 @@ const config = {
       'data': path.join(process.cwd(), 'data'),
       // the main file of vue 2.0 is ok, so no need to redefine
       // 'vuejs': path.join(process.cwd(), 'node_modules/vue/dist/vue.min.js'),
-      'regularjs': path.join(process.cwd(), 'node_modules/regularjs/dist/regular'),
+      'axios': path.join(process.cwd(), 'node_modules/axios/dist/axios.min'),
+      'regularjs': path.join(process.cwd(), 'node_modules/regularjs/dist/regular.min'),
       'restate': path.join(process.cwd(), 'node_modules/regular-state/restate-full'),
-      'stateman': path.join(process.cwd(), 'node_modules/stateman/stateman')
+      'stateman': path.join(process.cwd(), 'node_modules/stateman/stateman.min')
     },
     extensions: ['', '.js', '.vue', '.json', '.yaml']
   },
@@ -90,6 +88,9 @@ if (!isProduction) {
     config.devtool = 'eval'
   }
 } else {
+  // the 'transform-runtime' plugin tells babel to require the runtime
+  // instead of inlining it.
+  config.babel.plugins.unshift(['transform-runtime', {polyfill: false}])
   config.devtool = '#source-map'
   config.optimizePlugins = [
     new webpack.DefinePlugin({

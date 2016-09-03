@@ -8,6 +8,7 @@ let config = {
   dir: 'dist/css',
   'local-plugins': true,
   use: [
+    'postcss-import',
     'precss',
     'postcss-calc',
     'postcss-sprites',

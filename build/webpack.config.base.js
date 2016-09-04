@@ -17,7 +17,7 @@ const config = {
   // http://vue-loader.vuejs.org/en/features/es2015.html
   babel: {
     presets: [
-      ['stage-3'],
+      ['stage-2'],
       ['es2015', {'loose': true, 'modules': 'commonjs'}]
     ],
     cacheDirectory: true,

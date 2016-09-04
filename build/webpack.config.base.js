@@ -88,7 +88,8 @@ if (!isProduction) {
   // sourceMap 相关
   config.output.pathinfo = true
   if (!process.env.NO_SOURCE_MAP) {
-    config.devtool = 'eval'
+    // 只有这一种 sourceMap 才能执行 vue 代码
+    config.devtool = 'inline-source-map'
   }
 } else {
   // the 'transform-runtime' plugin tells babel to require the runtime

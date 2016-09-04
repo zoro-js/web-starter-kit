@@ -5,6 +5,7 @@
 * @Last modified time: 2016-08-06T17:26:19+08:00
 */
 
+const cwd = process.cwd()
 const debug = require('debug')('webpack:app')
 const env = require('./env')
 const webpack = require('webpack')
@@ -15,7 +16,7 @@ const globby = require('zoro-globby')
 const config = require('./webpack.config.base.js')
 
 function genEntry () {
-  const entryDir = path.join(process.cwd(), 'src/js/entry')
+  const entryDir = path.join(cwd, 'src/js/entry')
   const filepathList = globby.sync('**/*.js', entryDir)
   debug('filepathList', filepathList)
   const entry = {}
@@ -32,18 +33,18 @@ Object.assign(config, {
 })
 
 Object.assign(config.output, {
-  path: path.join(process.cwd(), 'dist/js'),
+  path: path.join(cwd, 'dist/js'),
   filename: '[name].js'
 })
 
 Object.assign(config.resolve, {
   root: [
-    path.join(process.cwd(), 'src/js')
+    path.join(cwd, 'src/js')
   ]
 })
 
 Object.assign(config.resolve.alias, {
-  'strap': path.join(process.cwd(), 'submodule/regular-strap/src')
+  'strap': path.join(cwd, 'submodule/regular-strap/src')
 })
 
 Array.prototype.push.apply(config.plugins, [

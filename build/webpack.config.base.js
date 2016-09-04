@@ -1,3 +1,4 @@
+const cwd = process.cwd()
 const env = require('./env')
 const path = require('path')
 const webpack = require('webpack')
@@ -7,7 +8,7 @@ const excludeJSReg = /(node_modules|bower_components)/
 const config = {
   output: {},
   eslint: {
-    configFile: path.join(process.cwd(), '.eslintrc.yaml'),
+    configFile: path.join(cwd, '.eslintrc.yaml'),
     // Loader will always return warnings
     emitWarning: true
     // do not enable cache, it will not work properly
@@ -51,13 +52,13 @@ const config = {
   },
   resolve: {
     alias: {
-      'data': path.join(process.cwd(), 'data'),
+      'data': path.join(cwd, 'data'),
       // the main file of vue 2.0 is ok, so no need to redefine
-      // 'vuejs': path.join(process.cwd(), 'node_modules/vue/dist/vue.min.js'),
-      'axios': path.join(process.cwd(), 'node_modules/axios/dist/axios.min'),
-      'regularjs': path.join(process.cwd(), 'node_modules/regularjs/dist/regular.min'),
-      'restate': path.join(process.cwd(), 'node_modules/regular-state/restate-full'),
-      'stateman': path.join(process.cwd(), 'node_modules/stateman/stateman.min')
+      // 'vuejs': path.join(cwd, 'node_modules/vue/dist/vue.min.js'),
+      'axios': path.join(cwd, 'node_modules/axios/dist/axios.min'),
+      'regularjs': path.join(cwd, 'node_modules/regularjs/dist/regular.min'),
+      'restate': path.join(cwd, 'node_modules/regular-state/restate-full'),
+      'stateman': path.join(cwd, 'node_modules/stateman/stateman.min')
     },
     extensions: ['', '.js', '.vue', '.json', '.yaml']
   },

@@ -7,6 +7,7 @@
 -->
 
 // http://webpack.github.io/docs/build-performance.html
+// http://webpack.github.io/docs/hot-module-replacement.html
 
 - Only use optimization plugins in production builds. https://webpack.github.io/docs/optimization.html
   - OccurrenceOrderPlugin: Webpack can vary the distribution of the ids to get the smallest id length for often used ids. The entry chunks have higher priority for file size.

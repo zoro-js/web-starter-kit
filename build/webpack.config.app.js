@@ -43,10 +43,6 @@ Object.assign(config.resolve, {
   ]
 })
 
-Object.assign(config.resolve.alias, {
-  'strap': path.join(cwd, 'submodule/regular-strap/src')
-})
-
 Array.prototype.push.apply(config.plugins, [
   new webpack.optimize.CommonsChunkPlugin({
     name: 'common',

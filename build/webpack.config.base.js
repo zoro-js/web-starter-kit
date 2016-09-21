@@ -70,7 +70,8 @@ const config = {
       syncVuexRouter: 'vuex-router-sync',
       Regular: 'regularjs',
       restate: 'restate',
-      restrap: 'regular-strap',
+      RegularStrap: 'regular-strap',
+      VueStrap: 'zoro-vue-strap',
       _: 'lodash'
     })
   ]

@@ -94,6 +94,7 @@ if (!isProduction) {
 } else {
   // the 'transform-runtime' plugin tells babel to require the runtime
   // instead of inlining it.
+  // set polyfill to false to avoid runtime to polyfill, otherwise it will insert `import` to the generated code, which will not be recoginized by browser unless you webpack it.
   config.babel.plugins.unshift(['transform-runtime', {polyfill: false}])
   config.devtool = '#source-map'
   config.optimizePlugins = [

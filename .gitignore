@@ -1,3 +1,5 @@
+# ignore dist of this project
+/dist
 
 # webpack stats
 *stats.json

@@ -29,6 +29,8 @@
     "prod": "run-p prod:*",
     "prod:js": "cross-env NODE_ENV=production npm run build:js",
     "prod:css": "cross-env NODE_ENV=production npm run build:css",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "npm run prod",
     "server": "puer & npm run dev",
     "koa": "node server/require.js",
     "koa:debug": "node debug server/require.js",
@@ -42,7 +44,6 @@
     "prepm2:prod": "npm run prod",
     "pm2:prod": "pm2 start bin/pm2.yaml --only node-wiki",
     "pm2:prod:stop": "pm2 stop bin/pm2.yaml --only node-wiki",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "run-p -lns koa dev"
   },
   "author": "",

@@ -3,7 +3,7 @@ const env = require('./env')
 const path = require('path')
 const webpack = require('webpack')
 
-const excludeJSReg = /(node_modules|bower_components)/
+const includeJSDir = path.join(cwd, 'src')
 
 const config = {
   output: {},
@@ -35,14 +35,15 @@ const config = {
   },
   module: {
     preLoaders: [
-      {test: /\.(?:js|vue)$/, loader: 'eslint', exclude: excludeJSReg}
+      {test: /\.(?:js|vue)$/, loader: 'eslint', include: includeJSDir}
     ],
     loaders: [
       {test: /\.html$/, loader: 'raw'},
+      {test: /\.json$/, loader: 'json'},
       {test: /\.yaml$/, loader: 'json!yaml'},
       {test: /\.css$/, loader: 'style!css!postcss'},
       {test: /\.vue$/, loader: 'vue'},
-      {test: /\.js$/, exclude: excludeJSReg, loader: 'babel'},
+      {test: /\.js$/, include: includeJSDir, loader: 'babel'},
       {
         test: /\.(png|jpg|jpeg|gif|svg)$/,
         loader: 'url',
@@ -95,7 +96,7 @@ if (!isProduction) {
   // sourceMap 相关
   config.output.pathinfo = true
   if (!process.env.NO_SOURCE_MAP) {
-    config.devtool = 'eval'
+    config.devtool = '#eval-source-map'
   }
 } else {
   config.devtool = '#source-map'

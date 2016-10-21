@@ -5,6 +5,8 @@ const webpack = require('webpack')
 
 const includeJSDir = path.join(cwd, 'src')
 
+const nodeModulesDir = path.join(cwd, 'node_modules')
+
 const config = {
   output: {},
   eslint: {
@@ -35,7 +37,8 @@ const config = {
   },
   module: {
     preLoaders: [
-      {test: /\.(?:js|vue)$/, loader: 'eslint', include: includeJSDir}
+      {test: /\.(?:js|vue)$/, loader: 'eslint', include: includeJSDir},
+      {test: /\.(?:js)$/, loader: 'source-map', include: nodeModulesDir}
     ],
     loaders: [
       {test: /\.html$/, loader: 'raw'},
@@ -81,7 +84,10 @@ const config = {
       VueStrap: 'zoro-vue-strap',
       _: 'lodash'
     })
-  ]
+  ],
+  node: {
+    fs: 'empty'
+  }
 }
 
 const isProduction = env.isProduction()
@@ -96,7 +102,8 @@ if (!isProduction) {
   // sourceMap 相关
   config.output.pathinfo = true
   if (!process.env.NO_SOURCE_MAP) {
-    config.devtool = '#eval-source-map'
+    // config.devtool = '#eval-source-map'
+    config.devtool = 'inline-module-source-map'
   }
 } else {
   config.devtool = '#source-map'

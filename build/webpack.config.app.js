@@ -39,7 +39,8 @@ Object.assign(config.output, {
 
 Object.assign(config.resolve, {
   root: [
-    path.join(cwd, 'src/js')
+    path.join(cwd, 'src/js'),
+    path.join(cwd, 'third')
   ]
 })
 

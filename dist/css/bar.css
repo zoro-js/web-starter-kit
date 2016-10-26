@@ -1,12 +1,1 @@
-.m-bar {
-  position: relative;
-  background-color: #85c99d;
-  border-color: rgb(133, 176, 148)
-}
-
-.m-foo {
-  position: absolute;
-  color: red;
-}
-
-/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9wb3N0Y3NzL2VudHJ5L2Zvby9iYXIuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsbUJBQW1CO0VBQ25CLDBCQUEwQjtFQUMxQixnQ0FBNEM7Q0FDN0M7O0FBRUQ7RUFDRSxtQkFBbUI7RUFDbkIsV0FBVztDQUNaIiwiZmlsZSI6ImJhci5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubS1iYXIge1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIGJhY2tncm91bmQtY29sb3I6ICM4NWM5OWQ7XG4gIGJvcmRlci1jb2xvcjogY29sb3IoIzg1Yzk5ZCBibGFja25lc3MoKzEwJSkpXG59XG5cbi5tLWZvbyB7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgY29sb3I6IHJlZDtcbn1cbiJdfQ== */
+.m-bar{position:relative;background-color:#85c99d;border-color:#85b094}.m-foo{position:absolute;color:red}

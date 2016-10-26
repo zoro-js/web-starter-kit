@@ -1,6 +1,6 @@
 {
   "name": "zoro-kit",
-  "version": "0.0.50",
+  "version": "0.0.51",
   "description": "",
   "main": "src/index.js",
   "directories": {
@@ -64,6 +64,8 @@
     "css-loader": "^0.25.0",
     "cssnano": "^3.8.0",
     "date-fns": "^1.9.0",
+    "es5-shim": "^4.5.9",
+    "es6-shim": "^0.35.1",
     "eslint": "^3.8.1",
     "eslint-config-zorojs": "0.0.10",
     "eslint-loader": "^1.6.0",
@@ -71,6 +73,7 @@
     "html-loader": "^0.4.4",
     "html-webpack-plugin": "^2.24.0",
     "json-loader": "^0.5.4",
+    "lodash": "^4.16.4",
     "npm-run-all": "^3.1.1",
     "postcss": "^5.2.5",
     "postcss-calc": "^5.3.1",

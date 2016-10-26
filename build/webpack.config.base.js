@@ -2,13 +2,21 @@ const cwd = process.cwd()
 const env = require('./env')
 const path = require('path')
 const webpack = require('webpack')
-
+const postcssConfig = require('./postcss')
 const includeJSDir = path.join(cwd, 'src')
-
 const nodeModulesDir = path.join(cwd, 'node_modules')
 
 const config = {
   output: {},
+  vue: {
+    postcss: [
+      require('postcss-import'),
+      require('precss'),
+      require('postcss-calc'),
+      require('postcss-sprites')(postcssConfig['postcss-sprites']),
+      require('autoprefixer')(postcssConfig.autoprefixer)
+    ]
+  },
   eslint: {
     configFile: path.join(cwd, '.eslintrc.yaml'),
     // Loader will always return warnings

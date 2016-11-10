@@ -3,12 +3,13 @@ const env = require('./env')
 const path = require('path')
 const webpack = require('webpack')
 const postcssConfig = require('./postcss')
-const includeJSDir = path.join(cwd, 'src')
+
+let includeJSDir = path.join(cwd, 'src')
 const nodeModulesDir = path.join(cwd, 'node_modules')
 
-const config = {
-  output: {},
-  vue: {
+module.exports = function genBaseConfig (options = {}) {
+  // vue config
+  const vue = {
     postcss: [
       require('postcss-import'),
       require('precss'),
@@ -16,16 +17,18 @@ const config = {
       require('postcss-sprites')(postcssConfig['postcss-sprites']),
       require('autoprefixer')(postcssConfig.autoprefixer)
     ]
-  },
-  eslint: {
+  }
+
+  // eslint config
+  const eslint = {
     configFile: path.join(cwd, '.eslintrc.yaml'),
     // Loader will always return warnings
     emitWarning: true
     // do not enable cache, it will not work properly
-  },
-  // when used with vue, the babel config should be placed here
-  // http://vue-loader.vuejs.org/en/features/es2015.html
-  babel: {
+  }
+
+  // babel config
+  const babel = {
     presets: [
       ['stage-2'],
       ['es2015', {'loose': true, 'modules': 'commonjs'}]
@@ -42,85 +45,90 @@ const config = {
       'transform-es3-property-literals',
       'transform-es3-member-expression-literals'
     ]
-  },
-  module: {
-    preLoaders: [
-      {test: /\.(?:js|vue)$/, loader: 'eslint', include: includeJSDir},
-      {test: /\.(?:js)$/, loader: 'source-map', include: nodeModulesDir}
-    ],
-    loaders: [
-      {test: /\.html$/, loader: 'raw'},
-      {test: /\.json$/, loader: 'json'},
-      {test: /\.yaml$/, loader: 'json!yaml'},
-      {test: /\.css$/, loader: 'style!css!postcss'},
-      {test: /\.vue$/, loader: 'vue'},
-      {test: /\.js$/, include: includeJSDir, loader: 'babel'},
-      {
-        test: /\.(png|jpg|jpeg|gif|svg)$/,
-        loader: 'url',
-        query: {
-          // limit for base64 inlining in bytes
-          limit: 10000,
-          // custom naming format if file is larger than
-          // the threshold
-          name: '[name].[ext]?[hash]'
-        }
-      }
-    ]
-  },
-  resolve: {
-    alias: {
-      'data': path.join(cwd, 'data'),
-      // the main file of vue 2.0 is ok, so no need to redefine
-      // 'vuejs': path.join(cwd, 'node_modules/vue/dist/vue.min.js'),
-      'axios': path.join(cwd, 'node_modules/axios/dist/axios.min'),
-      'regularjs': path.join(cwd, 'node_modules/regularjs/dist/regular.min'),
-      'restate': path.join(cwd, 'node_modules/regular-state/restate-full'),
-      'stateman': path.join(cwd, 'node_modules/stateman/stateman.min')
-    },
-    extensions: ['', '.js', '.vue', '.json', '.yaml']
-  },
-  plugins: [
-    new webpack.ProvidePlugin({
-      Vue: 'vue',
-      VueRouter: 'vue-router',
-      Vuex: 'vuex',
-      syncVuexRouter: 'vuex-router-sync',
-      Regular: 'regularjs',
-      restate: 'restate',
-      RegularStrap: 'regular-strap',
-      VueStrap: 'zoro-vue-strap',
-      _: 'lodash'
-    })
-  ],
-  node: {
-    fs: 'empty'
   }
-}
 
-const isProduction = env.isProduction()
-if (!isProduction) {
-  Array.prototype.push.apply(config.plugins, [
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"development"'
-      }
+  includeJSDir = [includeJSDir, ...(options.includeJSDir || [])]
+
+  // pre loaders
+  const preLoaders = [
+    {test: /\.(?:js)$/, loader: 'source-map', include: nodeModulesDir}
+  ]
+  if (options.eslint) {
+    preLoaders.push({
+      test: /\.(?:js|vue)$/, loader: 'eslint', include: includeJSDir
     })
-  ])
-  // sourceMap 相关
-  config.output.pathinfo = true
-  if (!process.env.NO_SOURCE_MAP) {
-    // config.devtool = '#eval-source-map'
-    config.devtool = 'inline-module-source-map'
   }
-} else {
-  config.devtool = '#source-map'
-  config.optimizePlugins = [
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"production"'
+
+  // loaders
+  const loaders = [
+    {test: /\.html$/, loader: 'raw'},
+    {test: /\.json$/, loader: 'json'},
+    {test: /\.yaml$/, loader: 'json!yaml'},
+    {test: /\.css$/, loader: 'style!css!postcss'},
+    {test: /\.vue$/, loader: 'vue'},
+    {test: /\.js$/, include: includeJSDir, loader: 'babel'},
+    {
+      test: /\.(png|jpg|jpeg|gif|svg)$/,
+      loader: 'url',
+      query: {
+        // limit for base64 inlining in bytes
+        limit: 10000,
+        // custom naming format if file is larger than
+        // the threshold
+        name: '[name].[ext]?[hash]'
       }
-    }),
+    }
+  ]
+
+  const config = {
+    output: {},
+    vue,
+    eslint,
+    // when used with vue, the babel config should be placed here
+    // http://vue-loader.vuejs.org/en/features/es2015.html
+    babel,
+    module: {
+      preLoaders,
+      loaders,
+      noParse: []
+    },
+    resolve: {
+      root: [],
+      alias: {
+        'data': path.join(cwd, 'data'),
+        // the main file of vue 2.0 is ok, so no need to redefine
+        // 'vuejs': path.join(cwd, 'node_modules/vue/dist/vue.min.js'),
+        'axios': path.join(cwd, 'node_modules/axios/dist/axios.min'),
+        'regularjs': path.join(cwd, 'node_modules/regularjs/dist/regular.min'),
+        'restate': path.join(cwd, 'node_modules/regular-state/restate-full'),
+        'stateman': path.join(cwd, 'node_modules/stateman/stateman.min')
+      },
+      extensions: ['', '.js', '.vue', '.json', '.yaml']
+    },
+    plugins: [
+      new webpack.DefinePlugin({
+        'process.env': {
+          NODE_ENV: `"${env.getNodeEnv()}"`
+        }
+      }),
+      new webpack.ProvidePlugin({
+        Vue: 'vue',
+        VueRouter: 'vue-router',
+        Vuex: 'vuex',
+        syncVuexRouter: 'vuex-router-sync',
+        Regular: 'regularjs',
+        restate: 'restate',
+        RegularStrap: 'regular-strap',
+        VueStrap: 'zoro-vue-strap',
+        _: 'lodash'
+      })
+    ],
+    node: {
+      fs: 'empty'
+    }
+  }
+
+  config.optimizePlugins = [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
@@ -132,6 +140,18 @@ if (!isProduction) {
     // in chars (a char is a byte)
     new webpack.optimize.MinChunkSizePlugin({minChunkSize: 10000})
   ]
-}
 
-module.exports = config
+  const isProduction = env.isProduction()
+  if (!isProduction) {
+    // sourceMap ￧ﾛﾸ￥ﾅﾳ
+    config.output.pathinfo = true
+    if (!process.env.NO_SOURCE_MAP) {
+      // config.devtool = '#eval-source-map'
+      config.devtool = 'inline-module-source-map'
+    }
+  } else {
+    config.devtool = '#source-map'
+  }
+
+  return config
+}

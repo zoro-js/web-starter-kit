@@ -3,7 +3,7 @@ const path = require('path')
 const pjson = require(path.join(cwd, './package.json'))
 const env = require('./env')
 // const HtmlWebpackPlugin = require('html-webpack-plugin')
-let config = require('./webpack.config.base.js')
+let config = require('./webpack.config.base.js')()
 
 module.exports = function ({output = {}, externals = []}) {
   config.entry = './src/index'

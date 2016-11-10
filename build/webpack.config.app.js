@@ -13,7 +13,7 @@ const path = require('path')
 const globby = require('zoro-globby')
 // const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const config = require('./webpack.config.base.js')
+const config = require('./webpack.config.base.js')()
 
 function genEntry () {
   const entryDir = path.join(cwd, 'src/js/entry')

@@ -1,12 +1,26 @@
 var env = {}
 
+const NODE_ENV_PRODUCTION = 'production'
+const NODE_ENV_DEVELOPMENT = 'development'
+
+env.getNodeEnv = function () {
+  return process.env.NODE_ENV || NODE_ENV_DEVELOPMENT
+}
+
 env.isProduction = function () {
-  return process.env.NODE_ENV === 'production'
+  return env.getNodeEnv() === NODE_ENV_PRODUCTION
+}
+
+env.notProduction = function () {
+  return env.getNodeEnv() !== NODE_ENV_PRODUCTION
+}
+
+env.isDevelopment = function () {
+  return env.getNodeEnv() === NODE_ENV_DEVELOPMENT
 }
 
 env.notDevelopment = function () {
-  const NODE_ENV = process.env.NODE_ENV
-  return typeof NODE_ENV !== 'undefined' && NODE_ENV !== 'development'
+  return env.getNodeEnv() !== NODE_ENV_DEVELOPMENT
 }
 
 module.exports = env

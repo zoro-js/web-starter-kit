@@ -4,7 +4,7 @@ const path = require('path')
 const webpack = require('webpack')
 const postcssConfig = require('./postcss')
 
-let includeJSDir = path.join(cwd, 'src')
+const srcJSDir = path.join(cwd, 'src')
 const nodeModulesDir = path.join(cwd, 'node_modules')
 
 module.exports = function genBaseConfig (options = {}) {
@@ -47,7 +47,7 @@ module.exports = function genBaseConfig (options = {}) {
     ]
   }
 
-  includeJSDir = [includeJSDir, ...(options.includeJSDir || [])]
+  const includeJSDirs = [srcJSDir, ...(options.includeJSDirs || [])]
 
   // pre loaders
   const preLoaders = [
@@ -55,7 +55,7 @@ module.exports = function genBaseConfig (options = {}) {
   ]
   if (options.eslint) {
     preLoaders.push({
-      test: /\.(?:js|vue)$/, loader: 'eslint', include: includeJSDir
+      test: /\.(?:js|vue)$/, loader: 'eslint', include: includeJSDirs
     })
   }
 
@@ -66,7 +66,7 @@ module.exports = function genBaseConfig (options = {}) {
     {test: /\.yaml$/, loader: 'json!yaml'},
     {test: /\.css$/, loader: 'style!css!postcss'},
     {test: /\.vue$/, loader: 'vue'},
-    {test: /\.js$/, include: includeJSDir, loader: 'babel'},
+    {test: /\.js$/, include: includeJSDirs, loader: 'babel'},
     {
       test: /\.(png|jpg|jpeg|gif|svg)$/,
       loader: 'url',

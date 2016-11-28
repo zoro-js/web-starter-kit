@@ -137,7 +137,14 @@ module.exports = function genBaseConfig (options = {}) {
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
-        warnings: false
+        warnings: false,
+        screw_ie8: false
+      },
+      mangle: {
+        screw_ie8: false
+      },
+      output: {
+        screw_ie8: false
       }
     }),
     new webpack.optimize.DedupePlugin(),

@@ -47,17 +47,19 @@ module.exports = function genBaseConfig (options = {}) {
     ]
   }
 
-  const includeJSDirs = [srcJSDir, ...(options.includeJSDirs || [])]
-
   // pre loaders
   const preLoaders = [
     {test: /\.(?:js)$/, loader: 'source-map', include: nodeModulesDir}
   ]
   if (options.eslint) {
+    const eslintJSDirs = [srcJSDir, ...(options.eslintJSDirs || [])]
     preLoaders.push({
-      test: /\.(?:js|vue)$/, loader: 'eslint', include: includeJSDirs
+      test: /\.(?:js|vue)$/, loader: 'eslint', include: eslintJSDirs
     })
   }
+
+  const includeJSDirs = [srcJSDir, ...(options.includeJSDirs || [])]
+  const excludeJSDirs = [...(options.excludeJSDirs || [])]
 
   // loaders
   const loaders = [
@@ -66,7 +68,7 @@ module.exports = function genBaseConfig (options = {}) {
     {test: /\.yaml$/, loader: 'json!yaml'},
     {test: /\.css$/, loader: 'style!css!postcss'},
     {test: /\.vue$/, loader: 'vue'},
-    {test: /\.js$/, include: includeJSDirs, loader: 'babel'},
+    {test: /\.js$/, include: includeJSDirs, exclude: excludeJSDirs, loader: 'babel'},
     {
       test: /\.(png|jpg|jpeg|gif|svg)$/,
       loader: 'url',
@@ -143,11 +145,12 @@ module.exports = function genBaseConfig (options = {}) {
 
   const isProduction = env.isProduction()
   if (!isProduction) {
-    // sourceMap ￧ﾛﾸ￥ﾅﾳ
+    // sourceMap 相关
     config.output.pathinfo = true
     if (!process.env.NO_SOURCE_MAP) {
       // config.devtool = '#eval-source-map'
-      config.devtool = 'inline-module-source-map'
+      // config.devtool = 'inline-module-source-map'
+      config.devtool = 'eval'
     }
   } else {
     config.devtool = '#source-map'

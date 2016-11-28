@@ -1,5 +1,6 @@
 # ignore dist of this project
 /dist
+.history
 
 # webpack stats
 *stats.json

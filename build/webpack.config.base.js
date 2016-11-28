@@ -28,23 +28,26 @@ module.exports = function genBaseConfig (options = {}) {
   }
 
   // babel config
+  const babelPlugins = [
+    'add-module-exports',
+    'transform-es3-property-literals',
+    'transform-es3-member-expression-literals'
+  ]
+  // the 'transform-runtime' plugin tells babel
+  // - Removes the inline babel helpers and uses the module babel-runtime/helpers instead.
+  // - Automatically requires babel-runtime/regenerator when you use generators/async functions.
+  // - Automatically requires babel-runtime/core-js and maps ES6 static methods (Object.assign) and built-ins (Promise).
+  // set polyfill to false to avoid runtime to polyfill, otherwise it will insert `import` to the generated code, which will not be recoginized by browser unless you webpack it.
+  if (options.transformRuntime) {
+    babelPlugins.unshift(['transform-runtime', {polyfill: false}])
+  }
   const babel = {
     presets: [
       ['stage-2'],
       ['es2015', {'loose': true, 'modules': 'commonjs'}]
     ],
     cacheDirectory: true,
-    plugins: [
-      // the 'transform-runtime' plugin tells babel
-      // - Removes the inline babel helpers and uses the module babel-runtime/helpers instead.
-      // - Automatically requires babel-runtime/regenerator when you use generators/async functions.
-      // Automatically requires babel-runtime/core-js and maps ES6 static methods (Object.assign) and built-ins (Promise).
-      // set polyfill to false to avoid runtime to polyfill, otherwise it will insert `import` to the generated code, which will not be recoginized by browser unless you webpack it.
-      ['transform-runtime', {polyfill: false}],
-      'add-module-exports',
-      'transform-es3-property-literals',
-      'transform-es3-member-expression-literals'
-    ]
+    plugins: babelPlugins
   }
 
   // pre loaders

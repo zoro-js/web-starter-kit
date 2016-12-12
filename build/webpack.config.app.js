@@ -51,8 +51,8 @@ Array.prototype.push.apply(config.plugins, [
   })
 ])
 
-const isProduction = env.isProduction()
-if (isProduction) {
+const isDevelopment = env.isDevelopment()
+if (!isDevelopment) {
   Array.prototype.push.apply(config.plugins, config.optimizePlugins)
 }
 

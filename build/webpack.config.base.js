@@ -135,6 +135,7 @@ module.exports = function genBaseConfig (options = {}) {
 
   config.optimizePlugins = [
     new webpack.optimize.OccurrenceOrderPlugin(),
+    // https://github.com/mishoo/UglifyJS2/issues/1246#issuecomment-237535244
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false,
@@ -153,8 +154,8 @@ module.exports = function genBaseConfig (options = {}) {
     new webpack.optimize.MinChunkSizePlugin({minChunkSize: 10000})
   ]
 
-  const isProduction = env.isProduction()
-  if (!isProduction) {
+  const isDevelopment = env.isDevelopment()
+  if (isDevelopment) {
     // sourceMap 相关
     config.output.pathinfo = true
     if (!process.env.NO_SOURCE_MAP) {

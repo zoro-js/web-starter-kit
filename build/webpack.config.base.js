@@ -7,7 +7,7 @@ const postcssConfig = require('./postcss')
 const srcJSDir = path.join(cwd, 'src')
 const nodeModulesDir = path.join(cwd, 'node_modules')
 
-module.exports = function genBaseConfig (options = {}) {
+module.exports = function (options = {}) {
   // vue config
   const vue = {
     postcss: [

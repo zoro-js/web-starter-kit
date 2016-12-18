@@ -13,8 +13,6 @@ const path = require('path')
 const globby = require('zoro-globby')
 // const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const config = require('./webpack.config.base.js')()
-
 function genEntry () {
   const entryDir = path.join(cwd, 'src/js/entry')
   const filepathList = globby.sync('**/*.js', entryDir)
@@ -28,32 +26,38 @@ function genEntry () {
   return entry
 }
 
-Object.assign(config, {
-  entry: genEntry()
-})
+module.exports = function (options = {}) {
+  const config = require('./webpack.config.base.js')()
 
-Object.assign(config.output, {
-  path: path.join(cwd, 'dist/js'),
-  filename: '[name].js'
-})
-
-Object.assign(config.resolve, {
-  root: [
-    path.join(cwd, 'src/js'),
-    path.join(cwd, 'third')
-  ]
-})
-
-Array.prototype.push.apply(config.plugins, [
-  new webpack.optimize.CommonsChunkPlugin({
-    name: 'common',
-    minChunks: 2
+  Object.assign(config, {
+    entry: genEntry()
   })
-])
 
-const isDevelopment = env.isDevelopment()
-if (!isDevelopment) {
-  Array.prototype.push.apply(config.plugins, config.optimizePlugins)
+  Object.assign(config.output, {
+    path: path.join(cwd, 'dist/js'),
+    filename: '[name].js'
+  })
+
+  Object.assign(config.resolve, {
+    root: [
+      path.join(cwd, 'src/js'),
+      path.join(cwd, 'third')
+    ]
+  })
+
+  if (!options.nocommon) {
+    Array.prototype.push.apply(config.plugins, [
+      new webpack.optimize.CommonsChunkPlugin({
+        name: 'common',
+        minChunks: 2
+      })
+    ])
+  }
+
+  const isDevelopment = env.isDevelopment()
+  if (!isDevelopment) {
+    Array.prototype.push.apply(config.plugins, config.optimizePlugins)
+  }
+
+  return config
 }
-
-module.exports = config

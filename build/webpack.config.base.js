@@ -67,6 +67,7 @@ module.exports = function (options = {}) {
   // loaders
   const loaders = [
     {test: /\.html$/, loader: 'raw'},
+    {test: /\.pug/, loader: 'pug'},
     {test: /\.json$/, loader: 'json'},
     {test: /\.yaml$/, loader: 'json!yaml'},
     {test: /\.css$/, loader: 'style!css!postcss'},

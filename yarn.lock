@@ -4959,6 +4959,14 @@ pug-load@^2.0.3:
     object-assign "^4.1.0"
     pug-walk "^1.0.0"
 
+pug-loader@^2.3.0:
+  version "2.3.0"
+  resolved "http://registry.npm.taobao.org/pug-loader/download/pug-loader-2.3.0.tgz#b869294413a2218f0a7dd92a953e592283676c10"
+  dependencies:
+    loader-utils "~0.2.5"
+    pug-walk "^1.0.0"
+    resolve "^1.1.7"
+
 pug-parser@^2.0.1:
   version "2.0.1"
   resolved "http://registry.npm.taobao.org/pug-parser/download/pug-parser-2.0.1.tgz#dc2c5bbb777047e98359cd606860f75f4bfc1541"

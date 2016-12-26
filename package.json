@@ -1,6 +1,6 @@
 {
   "name": "zoro-kit",
-  "version": "0.0.61",
+  "version": "0.0.62",
   "description": "",
   "main": "src/index.js",
   "directories": {
@@ -84,6 +84,7 @@
     "postcss-loader": "^1.1.1",
     "postcss-sprites": "^4.1.0",
     "precss": "^1.4.0",
+    "pug": "^2.0.0-beta6",
     "raw-loader": "^0.5.1",
     "request": "^2.79.0",
     "request-promise": "^4.1.1",

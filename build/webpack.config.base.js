@@ -66,6 +66,7 @@ module.exports = function (options = {}) {
 
   // loaders
   const loaders = [
+    {test: /\.txt$/, loader: 'raw'},
     {test: /\.html$/, loader: 'raw'},
     {test: /\.pug/, loader: 'pug'},
     {test: /\.json$/, loader: 'json'},

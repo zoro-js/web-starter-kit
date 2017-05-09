@@ -1,5 +1,7 @@
 # es5 -> es6
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/zorojs/zoro-kit.svg)](https://greenkeeper.io/)
+
 - module.exports/require -> import/export
 - self/that -> () => {}
 - var -> let/const
